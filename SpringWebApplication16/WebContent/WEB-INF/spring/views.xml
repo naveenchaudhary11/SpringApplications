@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+						   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="index" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/index.jsp"/>
+	</bean>
+	
+	<bean id="loginForm" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="html/loginForm.html"/>
+	</bean>
+	
+	<bean id="loginSuccess" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/loginSuccess.jsp"/>
+	</bean>
+	
+	<bean id="loginFailure" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/loginFailure.jsp"/>
+	</bean>
+	
+	<bean id="registerForm" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="html/registerForm.html"/>
+	</bean>
+	
+	<bean id="registrationSuccess" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/registrationSuccess.jsp"/>
+	</bean>
+	
+	<bean id="registrationFailure" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/registrationFailure.jsp"/>
+	</bean>
+	
+	<bean id="vendorList" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/vendorList.jsp"/>
+	</bean>
+	
+	<bean id="editForm" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/views/editForm.jsp"/>
+	</bean>
+</beans>
