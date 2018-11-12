@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans	
+						   http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/context
+						   http://www.springframework.org/schema/context/spring-context.xsd">
+						   
+	<context:annotation-config/>
+	
+	<context:component-scan base-package="com.tadigital.dao"/>
+	<context:component-scan base-package="com.tadigital.service"/>
+	<context:component-scan base-package="com.tadigital.aspects"/>
+	
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<bean class="com.tadigital.service.VendorServiceImpl" id="vendorService" />
+	<bean class="com.tadigital.dao.VendorDaoImp" id="vendorDao" />
+	<bean class="com.tadigital.aspects.LoggerAspect" id="loggerAspect" />
+	
+	<bean class="org.springframework.aop.framework.ProxyFactoryBean" id="vendorServiceProxy">
+		<property name="target" ref="vendorService" />
+		<property name="interceptorNames">
+			<list>
+				<value>loggerAspect</value>
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.aop.framework.ProxyFactoryBean" id="vendorDaoProxy">
+		<property name="target" ref="vendorDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>loggerAspect</value>
+			</list>
+		</property>
+	</bean>
+	<!-- <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate" >
+		<constructor-arg ref="dataSource" />
+	</bean> -->
+</beans>
